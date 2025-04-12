@@ -16,6 +16,7 @@ services:
       SPRING_JPA_SHOW_SQL: "true"
     networks:
       - bank-network
+    restart: always
 
   mysql:
     image: mysql:8.0
@@ -31,7 +32,8 @@ services:
       - mysql_data:/var/lib/mysql
     networks:
       - bank-network
-
+    restart: always
+ 
 volumes:
   mysql_data:
 
