@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bank-deployment
+  namespace: bank  
+  labels:
+    app: app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - name: bank-cont
+        image: sahastra16/bank123app:latest
+        ports:
+        - containerPort: 8081
+        env: 
+        - name: SPRING_DATASOURCE_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: bank-configmap
+              key: SPRING_DATASOURCE_USERNAME
+
+        - name: SPRING_DATASOURCE_URL          
+          valueFrom:
+            configMapKeyRef:
+              name: bank-configmap
+              key: SPRING_DATASOURCE_URL 
+
+
+        - name: SPRING_DATASOURCE_PASSWORD          
+          valueFrom:
+            secretKeyRef:
+              name: bank-secret
+              key: SPRING_DATASOURCE_PASSWORD 
