@@ -37,4 +37,7 @@ spec:
       - name: mysql-persistent-storage
         persistentVolumeClaim:
           claimName: mysql-pvc
+<<<<<<< HEAD
 
+=======
+>>>>>>> e5264af7dd4045e2a1ad4d73580ba247e5c0ebe9
